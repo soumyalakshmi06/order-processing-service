@@ -1,0 +1,25 @@
+meta {
+  name: Create Order - Tenant B
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/orders
+  body: json
+  auth: none
+}
+
+body:json {
+  {"tenantId": "tenantB",
+  "amount": 200,
+  "quantity": 5   // should fail later because quantity < 10
+  }
+}
+
+tests {
+  const data = JSON.parse(response.body);
+  env.set("orderId", data.orderId);
+  console.log("Saved orderId:", data.orderId);
+  
+}

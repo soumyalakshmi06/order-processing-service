@@ -1,0 +1,11 @@
+meta {
+  name: Poll Order Status
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v1/orders/{{orderId}}
+  body: none
+  auth: none
+}
