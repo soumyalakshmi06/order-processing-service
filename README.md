@@ -6,9 +6,10 @@ A clean and extensible backend service that demonstrates:
 - **Tenant-Specific Validation Rules**
 - **Transaction Outbox Pattern**
 - **Saga-Style Background Processing**
-- **Java 21, Spring Boot 3, JPA/Hibernate, H2**
 
-This project is a complete solution for the **Technical Assignment — Multi-Tenant Order Processing Service**.
+ Technologies used in this project: **Java 21, Spring Boot 3, JPA, H2**
+
+This project is a  solution for the **Multi-Tenant Order Processing Service**.
 
 ---
 
