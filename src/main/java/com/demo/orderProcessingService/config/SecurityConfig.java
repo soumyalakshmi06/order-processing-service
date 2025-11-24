@@ -13,15 +13,12 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-    http
-            .csrf(AbstractHttpConfigurer::disable)
-            .headers(headers -> headers.frameOptions(frame -> frame.disable()))
-            .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/h2-console/**").permitAll()
-                    .anyRequest().permitAll()
-            )
-            .httpBasic(Customizer.withDefaults())
-            .formLogin(AbstractHttpConfigurer::disable);
+    http.csrf(AbstractHttpConfigurer::disable)
+        .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+        .authorizeHttpRequests(
+            auth -> auth.requestMatchers("/h2-console/**").permitAll().anyRequest().permitAll())
+        .httpBasic(Customizer.withDefaults())
+        .formLogin(AbstractHttpConfigurer::disable);
 
     return http.build();
   }
