@@ -12,9 +12,9 @@ This project is a complete solution for the **Technical Assignment — Multi-Ten
 
 ---
 
-# 🚀 1. Features Overview
+#  1. Features Overview
 
-### ✔ Order Domain
+###  Order Domain
 Each order has:
 - `id`
 - `tenantId`
@@ -24,7 +24,7 @@ Each order has:
 
 ---
 
-### ✔ CQRS (Commands & Queries)
+###  CQRS (Commands & Queries)
 
 **Write Side (Commands)**
 - `POST /api/v1/orders`
@@ -38,7 +38,7 @@ Each order has:
 
 ---
 
-### ✔ Multi-Tenant Validation
+### Multi-Tenant Validation
 
 | Tenant | Validation Rules |
 |--------|------------------|
@@ -51,7 +51,7 @@ Adding more tenants requires **zero modification** to existing logic.
 
 ---
 
-### ✔ Transaction Outbox Pattern
+###  Transaction Outbox Pattern
 
 When an order is created:
 1. Save Order with `PENDING`
@@ -62,7 +62,7 @@ Ensures no order is created without an event and vice versa.
 
 ---
 
-### ✔ Saga Processing (Background Worker)
+###  Saga Processing (Background Worker)
 
 A scheduled worker:
 1. Fetches `PENDING` Outbox Events
@@ -76,7 +76,7 @@ Worker retries automatically on restart (idempotent).
 
 ---
 
-# 📦 2. Architecture
+#  2. Architecture
 
 ```
 src/main/java/com.demo.orderProcessingService
@@ -116,7 +116,7 @@ src/main/java/com.demo.orderProcessingService
 
 ---
 
-# ⚙️ 3. How to Run
+#  3. How to Run
 
 ### **Requirements**
 - Java **21+**
@@ -134,11 +134,11 @@ Run:
 
 ---
 
-# 🧪 4. API Usage
+#  4. API Usage
 
 ---
 
-## ➕ Create Order
+##  Create Order
 ### `POST /api/v1/orders`
 
 **Sample Request**
@@ -156,7 +156,7 @@ Run:
 
 ---
 
-## 🔍 Get Order
+##  Get Order
 ### `GET /api/v1/orders/{id}`
 
 **Sample Response**
@@ -172,7 +172,7 @@ Run:
 
 ---
 
-# 🧵 5. How Saga + Outbox Works
+#  5. How Saga + Outbox Works
 
 1. Client sends POST request
 2. Command Handler:
@@ -188,7 +188,7 @@ This ensures **strong consistency + reliable asynchronous processing**.
 
 ---
 
-# 🛠️ 6. H2 Console
+#  6. H2 Console
 
 ### URL:
 ```
@@ -206,11 +206,11 @@ You can inspect:
 
 ---
 
-# 🔍 7. Testing Examples (Bruno / Postman)
+#  7. Testing Examples (Bruno / Postman)
 
 ---
 
-## ✔ tenantA success
+##  tenantA success
 ```json
 {
   "tenantId": "tenantA",
@@ -219,7 +219,7 @@ You can inspect:
 }
 ```
 
-## ❌ tenantB failure (quantity too low)
+##  tenantB failure (quantity too low)
 ```json
 {
   "tenantId": "tenantB",
@@ -228,7 +228,7 @@ You can inspect:
 }
 ```
 
-## ✔ tenantB success
+##  tenantB success
 ```json
 {
   "tenantId": "tenantB",
@@ -239,7 +239,7 @@ You can inspect:
 
 ---
 
-# 🧩 8. Extendability
+#  8. Extendability
 
 To add a new tenant:
 
@@ -257,7 +257,7 @@ Registered automatically — no changes to core logic.
 
 ---
 
-# 🎯 9. Why This Project Meets the Assignment 100%
+#  This Project Meets 
 
 - Clean **CQRS** implementation
 - **Fully working Saga** with Outbox pattern
@@ -269,12 +269,9 @@ Registered automatically — no changes to core logic.
 
 ---
 
-# 🏁 10. Conclusion
+#  10. Conclusion
 
-This project demonstrates strong backend engineering skills through:
-
-- Well-structured architecture
-- Clear separation of concerns
+This project demonstrates Well-structured architecture and Clear separation of concerns with:
 - Reliable event-driven processing
 - Strong multi-tenant strategy
 - Clean and maintainable codebase
