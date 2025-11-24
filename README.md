@@ -1,7 +1,5 @@
 # Multi-Tenant Order Processing Service — Polished Submission
 
-**Important & high-impact edits (apply these in your codebase)**
-
 1. **OutboxWorker** — made transactional, claim-with-UPDATE pattern, REQUIRES_NEW for processing, idempotency checks and recovery of stuck events.
 2. **OutboxRepository** — added `@Modifying` queries: `claimEvent`, `resetStuckEvents` and `findPendingOrdered`.
 3. **OrderCommandHandler (service)** — single `@Transactional` method to save `Order` + `OutboxEvent` atomically.
@@ -21,7 +19,7 @@
    mvn --version
    ```
 
-2. Unzip the project and go into project root where `pom.xml` is):
+2. Unzip the project and go into project root where `pom.xml` is:
 
    ```bash
    unzip /mnt/data/orderProcessingService.zip -d /tmp
