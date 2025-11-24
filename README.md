@@ -103,13 +103,6 @@ Important tests included:
 * [ ] README.md (this file) committed.
 * [ ] Unit & integration tests added and passing.
 * [ ] Example cURL commands in README.
-* [ ] Short architecture diagram (optional png) — I can generate this and add to repo on request.
 
 ---
-
-## If you want, I will:
-
-1. Apply the code changes and tests directly into your uploaded repo and produce a new zip. (I already have your upload at `/mnt/data/orderProcessingService.zip`.)
-2. Create the missing unit/integration tests and include the test reports.
-3. Add an architecture diagram PNG and sequence diagram.
 
