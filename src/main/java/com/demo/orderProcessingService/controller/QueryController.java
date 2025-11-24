@@ -7,16 +7,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/orders")
 public class QueryController {
-    private final OrderQueryHandler queryHandler;
+  private final OrderQueryHandler queryHandler;
 
-    public QueryController(OrderQueryHandler queryHandler){
-        this.queryHandler = queryHandler;
-    }
+  public QueryController(OrderQueryHandler queryHandler) {
+    this.queryHandler = queryHandler;
+  }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> get(@PathVariable String id) {
-        return queryHandler.getById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
+  @GetMapping("/{id}")
+  public ResponseEntity<?> get(@PathVariable String id) {
+    return queryHandler
+        .getById(id)
+        .map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.notFound().build());
+  }
 }

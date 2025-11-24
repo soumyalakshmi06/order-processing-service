@@ -1,22 +1,37 @@
 package com.demo.orderProcessingService.validation;
 
-import org.springframework.stereotype.Component;
-
+import com.demo.orderProcessingService.domain.OrderEntity;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ValidatorRegistry {
-    private final Map<String, TenantOrderValidator> validators;
 
-    public ValidatorRegistry(Map<String, TenantOrderValidator> validators) {
-        this.validators = validators;
-    }
+  private final Map<String, TenantOrderValidator> registry = new HashMap<>();
 
-    public TenantOrderValidator get(String tenantId) {
-        // try exact match by bean name (we named beans "tenantA"/"tenantB")
-        TenantOrderValidator v = validators.get(tenantId);
-        if (v != null) return v;
-        // else default validator that always fails (safe)
-        return order -> false;
+  public ValidatorRegistry(List<TenantOrderValidator> validators) {
+    for (TenantOrderValidator v : validators) {
+      registry.put(v.tenantId(), v);
+      System.out.println("Registered validator for tenant: " + v.tenantId());
     }
+  }
+
+  public TenantOrderValidator get(String tenantId) {
+    return registry.getOrDefault(
+        tenantId,
+        new TenantOrderValidator() {
+
+          @Override
+          public boolean validate(OrderEntity order) {
+            return false; // safely fail if tenant not recognized
+          }
+
+          @Override
+          public String tenantId() {
+            return "unknown"; // fallback tenant ID
+          }
+        });
+  }
 }

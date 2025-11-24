@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: orderProcessingService
+
+  datasource:
+    url: jdbc:h2:mem:orders;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    hikari:
+      maximum-pool-size: 5
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+server:
+  port: 8080
+
+outbox:
+  worker:
+    poll-interval-ms: 3000
+    batch-size: 10
+    in-progress-timeout-seconds: 60
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql: trace

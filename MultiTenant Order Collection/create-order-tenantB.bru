@@ -16,10 +16,3 @@ body:json {
   "quantity": 5   // should fail later because quantity < 10
   }
 }
-
-tests {
-  const data = JSON.parse(response.body);
-  env.set("orderId", data.orderId);
-  console.log("Saved orderId:", data.orderId);
-  
-}
